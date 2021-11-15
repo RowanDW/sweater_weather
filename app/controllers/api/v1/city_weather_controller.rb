@@ -26,7 +26,7 @@ class Api::V1::CityWeatherController < ApplicationController
             activities = []
             activities << BoredService.get_activity(get_activity_type(forecast[:current][:temp]))
             activities << BoredService.get_activity('relaxation')
-            render json: ActivitySerializer.activities(forecast, activities)
+            render json: ActivitySerializer.activities(forecast, activities, params[:destination])
         else
             render json: {error: "No destination given"}, status: 400
         end
