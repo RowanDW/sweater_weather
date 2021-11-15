@@ -7,8 +7,8 @@ class ActivitySerializer
                 "attributes": {
                     "destination": destination,
                     "forecast": {
-                        "summary": forecast[:current][:weather].first[:description],
-                        "temperature": "#{forecast[:current][:temp]} F"
+                        "summary": forecast[:summary],
+                        "temperature": "#{forecast[:temperature]} F"
                     },
                     "activities": activities.map do |act|
                         {

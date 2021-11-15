@@ -21,10 +21,9 @@ class Api::V1::CityWeatherController < ApplicationController
 
     def activities
         if params[:destination].present?
-            city = MapquestFacade.get_coordinates(params[:destination])
-            forecast = OpenweatherService.get_city_weather(city[:lat], city[:lng])
+            forecast = OpenweatherFacade.get_activity_forecast(params[:destination])
             activities = []
-            activities << BoredService.get_activity(get_activity_type(forecast[:current][:temp]))
+            activities << BoredService.get_activity(get_activity_type(forecast[:temperature]))
             activities << BoredService.get_activity('relaxation')
             render json: ActivitySerializer.activities(forecast, activities, params[:destination])
         else
@@ -35,10 +34,9 @@ class Api::V1::CityWeatherController < ApplicationController
     private
 
     def get_activity_type(temp)
-        case temp
-        when temp < 50
+        if temp < 50
           "cooking"
-        when temp >= 60
+        elsif temp >= 60
           "recreational"
         else
           "busywork"
