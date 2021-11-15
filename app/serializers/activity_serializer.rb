@@ -12,10 +12,10 @@ class ActivitySerializer
                     },
                     "activities": activities.map do |act|
                         {
-                        "title": act[:activity],
-                        "type": act[:type],
-                        "participants": act[:participants],
-                        "price": act[:price]
+                        "title": act.title,
+                        "type": act.type,
+                        "participants": act.participants,
+                        "price": act.price
                         }
                     end
                 }
