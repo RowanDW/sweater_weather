@@ -20,4 +20,16 @@ RSpec.describe 'the city weather forecast endpoint' do
         expect(image[:data][:attributes][:image][:credit][:source]).to eq("unsplash.com")
         expect(image[:data][:attributes][:image][:credit][:author]).to be_a(String)
     end
+
+    it 'returns an error if no location is given', :vcr do
+        get '/api/v1/forecast'
+        expect(response).to_not be_successful
+        error = JSON.parse(response.body, symbolize_names: true)
+        expect(error).to eq({error: "No location given"})
+
+        get '/api/v1/forecast?location= '
+        expect(response).to_not be_successful
+        error = JSON.parse(response.body, symbolize_names: true)
+        expect(error).to eq({error: "No location given"})
+    end
 end
