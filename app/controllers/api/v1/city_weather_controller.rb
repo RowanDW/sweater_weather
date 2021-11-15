@@ -22,24 +22,10 @@ class Api::V1::CityWeatherController < ApplicationController
     def activities
         if params[:destination].present?
             forecast = OpenweatherFacade.get_activity_forecast(params[:destination])
-            activities = []
-            activities << BoredService.get_activity(get_activity_type(forecast[:temperature]))
-            activities << BoredService.get_activity('relaxation')
+            activities = BoredFacade.get_activities_forecast(forecast[:temperature])
             render json: ActivitySerializer.activities(forecast, activities, params[:destination])
         else
             render json: {error: "No destination given"}, status: 400
-        end
-    end
-
-    private
-
-    def get_activity_type(temp)
-        if temp < 50
-          "cooking"
-        elsif temp >= 60
-          "recreational"
-        else
-          "busywork"
         end
     end
 end
