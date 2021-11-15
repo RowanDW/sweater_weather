@@ -28,6 +28,26 @@ RSpec.describe 'the activity endpoint' do
         expect(first[:price]).to be_a(Numeric)
     end
 
+    it 'returns the correct activity type based on temperature', :vcr do
+        allow(OpenweatherFacade).to receive(:get_activity_forecast).and_return({summary: "Should be recreational", temperature: 62.3})
+        get '/api/v1/activities?destination=denver,co'
+        activities = JSON.parse(response.body, symbolize_names: true)
+        first = activities[:data][:attributes][:activities].first
+        expect(first[:type]).to eq('recreational')
+
+        allow(OpenweatherFacade).to receive(:get_activity_forecast).and_return({summary: "Should be busywork", temperature: 59.3})
+        get '/api/v1/activities?destination=denver,co'
+        activities = JSON.parse(response.body, symbolize_names: true)
+        first = activities[:data][:attributes][:activities].first
+        expect(first[:type]).to eq('busywork')
+
+        allow(OpenweatherFacade).to receive(:get_activity_forecast).and_return({summary: "Should be cooking", temperature: 49.3})
+        get '/api/v1/activities?destination=denver,co'
+        activities = JSON.parse(response.body, symbolize_names: true)
+        first = activities[:data][:attributes][:activities].first
+        expect(first[:type]).to eq('cooking')
+    end
+
     it 'returns an error if no destination is given', :vcr do
         get '/api/v1/activities'
         expect(response).to_not be_successful
