@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'the activity endpoint' do  
     it 'returns activities and weather for given city', :vcr do
-        get '/api/v1/activities?desination=denver,co'
+        get '/api/v1/activities?destination=denver,co'
 
         expect(response).to be_successful
 

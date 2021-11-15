@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/forecast', to: 'city_weather#forecast'
       get '/backgrounds', to: 'city_weather#backgrounds'
+      get '/activities', to: 'city_weather#activities'
     end
   end
 end
