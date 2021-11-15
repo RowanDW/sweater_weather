@@ -31,7 +31,7 @@ class ForecastSerializer
                     end.take(5),
                     "hourly_weather": forecast[:hourly].map do |hour|
                         {
-                        "time": Time.at(hour[:dt]),
+                        "time": Time.at(hour[:dt]).to_time.strftime('%T'),
                         "temp": hour[:temp],
                         "conditions": hour[:weather].first[:description],
                         "icon": hour[:weather].first[:icon]
