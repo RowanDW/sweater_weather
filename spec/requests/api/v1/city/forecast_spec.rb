@@ -21,7 +21,7 @@ RSpec.describe 'the city weather forecast endpoint' do
         expect(current[:sunrise].to_datetime).to be_a(DateTime)
         expect(current[:sunset].to_datetime).to be_a(DateTime)
         expect(current[:feels_like]).to be_a(Float)
-        expect(current[:humidity]).to be_a(Float)
+        expect(current[:humidity]).to be_a(Numeric)
         expect(current[:uvi]).to be_a(Numeric)
         expect(current[:visibility]).to be_a(Integer)
         expect(current[:conditions]).to be_a(String)
