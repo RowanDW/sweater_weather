@@ -1,5 +1,5 @@
 class ImageSerializer
-    def self.image(image_data, location)
+    def self.image(image, location)
         {
             "data": {
                 "type": "image",
@@ -7,10 +7,10 @@ class ImageSerializer
                 "attributes": {
                     "image": {
                         "location": location,
-                        "image_url": image_data[:urls][:regular],
+                        "image_url": image.url,
                         "credit": {
                             "source": "unsplash.com",
-                            "author": image_data[:user][:name]                        
+                            "author": image.author                      
                         }
                     }
                 }
