@@ -22,12 +22,12 @@ RSpec.describe 'the city weather forecast endpoint' do
     end
 
     it 'returns an error if no location is given', :vcr do
-        get '/api/v1/forecast'
+        get '/api/v1/backgrounds'
         expect(response).to_not be_successful
         error = JSON.parse(response.body, symbolize_names: true)
         expect(error).to eq({error: "No location given"})
 
-        get '/api/v1/forecast?location= '
+        get '/api/v1/backgrounds?location= '
         expect(response).to_not be_successful
         error = JSON.parse(response.body, symbolize_names: true)
         expect(error).to eq({error: "No location given"})
