@@ -3,8 +3,8 @@ class Forecast
     attr_reader :datetime, :temperature, :sunrise, :sunset, :feels_like, 
                 :humidity, :uvi, :visibility, :conditions, :icon,
                 :daily, :hourly
+                
     def initialize(weather_data)
-       #binding.pry
         @datetime = Time.at(weather_data[:current][:dt]).to_datetime
         @temperature = weather_data[:current][:temp]
         @sunrise = Time.at(weather_data[:current][:sunrise]).to_datetime
