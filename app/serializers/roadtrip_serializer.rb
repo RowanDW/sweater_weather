@@ -9,8 +9,8 @@ class RoadtripSerializer
                     "end_city": roadtrip.end_city,
                     "travel_time": roadtrip.travel_time,
                     "weather_at_eta": {
-                        "temperature": roadtrip.destination_weather[:temperature],
-                        "conditions": roadtrip.destination_weather[:conditions]
+                        "temperature": roadtrip.destination_temp,
+                        "conditions": roadtrip.destination_conditions
                     }
                 }
             }

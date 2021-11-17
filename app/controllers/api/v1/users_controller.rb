@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
         if user.save
             render json: UserSerializer.user(user), status: 201
         else
-            render json: {"error": "Invalid Credentials"}, status: 400
+            render json: {"error": "Invalid Registration"}, status: 400
         end
     end
 
