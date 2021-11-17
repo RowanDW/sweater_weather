@@ -8,6 +8,7 @@ RSpec.describe 'Hourly Weather object' do
         expect(roadtrip.start_city).to eq("Denver,CO")
         expect(roadtrip.end_city).to eq("Pueblo,CO")
         expect(roadtrip.travel_time).to eq(12345)
-        expect(roadtrip.destination_weather).to eq({temperature: 32, conditions: "Something"})
+        expect(roadtrip.destination_temp).to eq(32)
+        expect(roadtrip.destination_conditions).to eq("Something")
     end
 end
