@@ -2,9 +2,10 @@
 
 ## Table of contents
 - [Overview](#overview)
-- [App Screenshots](#app-screenshots)
+- [SetUp](#setup)
+- [Endpoints](#endpoints)
 - [Technologies](#technologies)
-- [Contributors](#contributors)
+- [Contact](#contact)
 
 ### Overview
 Sweater Weather is an api backend designed to help people plan road trips. The app allows users to register and log in, see weather forcasts for any city, as well as the forcast for their roadtrip desination at their ETA.
@@ -14,7 +15,7 @@ This application consumes the following APIs:
 * [OpenWeather](https://openweathermap.org/api/one-call-api)
 * [Unsplash Photo Search](https://unsplash.com/documentation#search-photos)
 
-### SetUp
+### Setup
 To use this application:
 
 * Fork this repository
@@ -30,6 +31,180 @@ To use this application:
     * `unsplash_access_key: <YOUR-KEY-HERE>`
 * Run the test suite with `bundle exec rspec`
 * Run your development server with `rails s` to see the app in action.
+
+### Endpoints
+
+#### Get weather forecast for a given city
+
+`GET /api/v1/forecast?location=<LOCATION>`
+
+Example JSON response:
+
+```
+{
+    "data": {
+        "id": null,
+        "type": "forecast",
+        "attributes": {
+            "current_weather": {
+                "datetime": "2021-11-16T22:13:08.000-07:00",
+                "temperature": 47.75,
+                "sunrise": "2021-11-16T06:46:09.000-07:00",
+                "sunset": "2021-11-16T16:43:41.000-07:00",
+                "feels_like": 47.14,
+                "humidity": 41,
+                "uvi": 0,
+                "visibility": 10000,
+                "conditions": "clear sky",
+                "icon": "01n"
+            },
+            "daily_weather": [
+                {
+                    "date": "2021-11-16",
+                    "sunrise": "2021-11-16T06:46:09.000-07:00",
+                    "sunset": "2021-11-16T16:43:41.000-07:00",
+                    "min_temp": 46.47,
+                    "max_temp": 67.98,
+                    "conditions": "overcast clouds",
+                    "icon": "04d"
+                },
+                ...
+            ],
+            "hourly_weather": [
+                {
+                    "time": "22:00:00",
+                    "temp": 47.75,
+                    "conditions": "clear sky",
+                    "icon": "01n"
+                },
+                ...
+            ]
+        }
+    }
+}
+```
+
+#### Get background image for a given city
+
+`GET /api/v1/backgrounds?location=<LOCATION>`
+
+Example JSON response:
+
+```
+{
+    "data": {
+        "type": "image",
+        "id": null,
+        "attributes": {
+            "image": {
+                "location": "denver,co",
+                "image_url": "https://images.unsplash.com/photo-1634507307799-ace9b49840b7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNzU2ODB8MHwxfHNlYXJjaHwxfHxkZW52ZXIlMkNjb3xlbnwwfHx8fDE2MzcwOTAxNzc&ixlib=rb-1.2.1&q=80&w=1080",
+                "credit": {
+                    "source": "unsplash.com",
+                    "author": "Dillon Wanner"
+                }
+            }
+        }
+    }
+}
+```
+#### Register a User
+
+```
+POST /api/v1/users
+Content-Type: application/json
+Accept: application/json
+
+body:
+
+{
+  "email": "whatever@example.com",
+  "password": "password",
+  "password_confirmation": "password"
+}
+```
+
+Example JSON response:
+
+```
+{
+    "data": {
+        "type": "user",
+        "id": 1,
+        "attributes": {
+            "email": "whatever@example.com",
+            "api_key": "12345"
+        }
+    }
+}
+
+```
+
+#### Log in a User
+
+```
+POST /api/v1/sessions
+Content-Type: application/json
+Accept: application/json
+
+body:
+
+{
+  "email": "whatever@example.com",
+  "password": "password"
+}
+```
+
+Example JSON response:
+
+```
+{
+    "data": {
+        "type": "user",
+        "id": 1,
+        "attributes": {
+            "email": "whatever@example.com",
+            "api_key": "12345"
+        }
+    }
+}
+
+```
+
+#### Get roadtrip data for given cities
+```
+POST /api/v1/road_trip
+Content-Type: application/json
+Accept: application/json
+
+body:
+
+{
+  "origin": "Denver,CO",
+  "destination": "Pueblo,CO",
+  "api_key": "12345"
+}
+```
+
+Example JSON response:
+
+```
+{
+    "data": {
+        "id": null,
+        "type": "roadtrip",
+        "attributes": {
+            "start_city": "Denver,CO",
+            "end_city": "Pueblo,CO",
+            "travel_time": "01:45:23",
+            "weather_at_eta": {
+                "temperature": 52.16,
+                "conditions": "clear sky"
+            }
+        }
+    }
+}
+```
 
 ### Technologies
 
@@ -63,13 +238,10 @@ To use this application:
 
 
 ### Contact
-![LinkedIn][https://www.linkedin.com/in/rowandelong](https://www.linkedin.com/in/rowandelong)
 
-- [Rowan DeLong](https://www.linkedin.com/in/rowandelong/)
-
-![Github][github-badge]
-
-- [Rowan DeLong](https://github.com/RowanDW)
+Rowan DeLong
+[LinkedIn](https://www.linkedin.com/in/rowandelong)
+[GitHub](https://github.com/RowanDW)
 
 
 
