@@ -23,7 +23,7 @@ RSpec.describe 'Hourly Weather object' do
         weather = HourlyWeather.new(weather_data)
 
         expect(weather).to be_a(HourlyWeather)
-        expect(weather.time).to eq("10:00:00")
+        expect(weather.time).to eq(1636995600)
         expect(weather.temp).to eq(68.09)
         expect(weather.conditions).to eq("clear sky")
         expect(weather.icon).to eq("01d")

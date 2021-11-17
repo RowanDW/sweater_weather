@@ -5,10 +5,10 @@ class Forecast
                 :daily, :hourly
                 
     def initialize(weather_data)
-        @datetime = Time.at(weather_data[:current][:dt]).to_datetime
+        @datetime = weather_data[:current][:dt]
         @temperature = weather_data[:current][:temp]
-        @sunrise = Time.at(weather_data[:current][:sunrise]).to_datetime
-        @sunset = Time.at(weather_data[:current][:sunset]).to_datetime
+        @sunrise = weather_data[:current][:sunrise]
+        @sunset = weather_data[:current][:sunset]
         @feels_like = weather_data[:current][:feels_like]
         @humidity = weather_data[:current][:humidity]
         @uvi = weather_data[:current][:uvi]

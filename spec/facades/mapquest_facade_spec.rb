@@ -10,4 +10,10 @@ RSpec.describe 'Mapquest facade' do
         expect(coordinates[:lat]).to eq(39.738453)
         expect(coordinates[:lng]).to eq(-104.984853)
     end    
+
+    it '#get_trip_data',:vcr do
+        roadtrip = MapquestFacade.get_trip_data("Denver,CO", "Pueblo,CO")
+
+        expect(roadtrip).to be_a(Roadtrip)
+    end
 end

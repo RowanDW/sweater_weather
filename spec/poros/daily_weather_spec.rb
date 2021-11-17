@@ -27,9 +27,9 @@ RSpec.describe 'Daily Weather object' do
         weather = DailyWeather.new(weather_data)
 
         expect(weather).to be_a(DailyWeather)
-        expect(weather.date.to_s).to eq("2021-11-15")
-        expect(weather.sunrise.to_s).to eq("2021-11-15T06:45:00-07:00")
-        expect(weather.sunset.to_s).to eq("2021-11-15T16:44:27-07:00")
+        expect(weather.date.to_s).to eq("1636999200")
+        expect(weather.sunrise.to_s).to eq("1636983900")
+        expect(weather.sunset.to_s).to eq("1637019867")
         expect(weather.min_temp).to eq(51.51)
         expect(weather.max_temp).to eq(69.51)
         expect(weather.conditions).to eq("few clouds")
