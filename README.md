@@ -239,9 +239,10 @@ Example JSON response:
 
 ### Contact
 
-Rowan DeLong
-[LinkedIn](https://www.linkedin.com/in/rowandelong)
-[GitHub](https://github.com/RowanDW)
+* Rowan DeLong
+* rowanwinzer@gmail.com
+* [LinkedIn](https://www.linkedin.com/in/rowandelong)
+
 
 
 
