@@ -23,4 +23,14 @@ RSpec.describe 'mapquest service', :vcr do
     expect(first[:latLng][:lat]).to be_a(Float)
     expect(first[:latLng][:lng]).to be_a(Float)
   end
+
+  it 'finds trip info given start and end locations', :vcr do
+    response = MapquestService.get_trip_data("Denver,CO", "Pueblo,CO")
+    
+    expect(response).to be_a(Hash)
+    expect(response).to have_key(:route)
+    expect(response[:route]).to be_a(Hash)
+    expect(response[:route]).to have_key(:realTime)
+    expect(response[:route][:realTime]).to be_a(Integer)
+  end
 end

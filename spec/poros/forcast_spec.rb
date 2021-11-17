@@ -9,10 +9,10 @@ RSpec.describe 'Forecast object' do
         weather = Forecast.new(weather_data)
 
         expect(weather).to be_a(Forecast)
-        expect(weather.datetime.to_s).to eq("2021-11-15T18:40:01-07:00")
+        expect(weather.datetime.to_s).to eq("1637026801")
         expect(weather.temperature).to eq(64.78)
-        expect(weather.sunrise.to_s).to eq("2021-11-15T05:48:00-07:00")
-        expect(weather.sunset.to_s).to eq("2021-11-15T16:13:53-07:00")
+        expect(weather.sunrise.to_s).to eq("1636980480")
+        expect(weather.sunset.to_s).to eq("1637018033")
         expect(weather.feels_like).to eq(64.85)
         expect(weather.humidity).to eq(83)
         expect(weather.uvi).to eq(0)

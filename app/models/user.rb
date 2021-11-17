@@ -4,4 +4,8 @@ class User < ApplicationRecord
     validates :api_key, uniqueness: true, presence: true
    
     has_secure_password
+
+    def self.valid_api?(api_key)
+        User.where(api_key: api_key).count > 0
+    end
 end
