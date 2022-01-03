@@ -8,7 +8,7 @@
 - [Contact](#contact)
 
 ### Overview
-Sweater Weather is an api backend designed to help people plan road trips. The app allows users to register and log in, see weather forcasts for any city, as well as the forcast for their roadtrip desination at their ETA.
+Sweater Weather is an api backend designed to help people plan road trips. The app allows users to register and log in, see weather forecasts for any city, as well as the forecast for their roadtrip destination at their ETA.
 
 This application consumes the following APIs:
 * [MapQuest Geocoding and Routes](https://developer.mapquest.com/documentation/geocoding-api/)
